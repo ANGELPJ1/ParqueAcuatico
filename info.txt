@@ -1,0 +1,58 @@
+Crear un sitio web para un parque acuático
+
+El parque acuático cuenta con:
+
+·        Alberca infantil.
+·        Alberca familiar.
+·        Alberca de olas con toboganes.
+·        Lago natural.
+·        Cabañas para 4 personas.
+·        Cabañas para 6 personas
+·        Áreas de camping.
+·        Estacionamiento.
+·        Servicio médico.
+·        Regaderas
+·        Seguridad las 24 Hrs.
+·        Asadores
+·        Áreas verdes
+·        Renta de casas de campaña
+Costos:
+
+·        Espacio para casa de campaña por noche…………………………. $350
+·        Renta de casa de campaña para 4 personas……………………… $150
+·        Renta de casa de campaña para 8 personas……………………… $180
+·        Renta de casa de campaña para 12 personas……………………. $220
+·        Cabaña para 4 personas……………………………………………………. $2500
+·        Cabaña para 6 personas……………………………………………………. $3000
+·        Silla…………………………………………………………………………………… $30
+·        Mesa………………………………………………………………………………… $50
+·        Sombrilla………………………………………………………………………….. $50
+·        Entrada al parque por persona:
+·        Adulto:        …………………………………………………………………. $180
+
+·        Niño:            …………………………………………………………………. $120
+
+En base a la información anterior, desarrollar:
+
+·       Una aplicación web que muestre todo lo anterior mencionado, agregar imágenes, iconos, y estilos.
+      Crear un repositorio en GitHub, en el que se suban cambios cada 30 min.
+·        Agregar un apartado(formulario) para que el cliente pueda adquirir entradas, mesas, sombrillas, etc. 
+·        El administrador para revisar las ventas realizadas. (Agregar login para el administrador)
+·        Para realizar una compra, el cliente esta relacionado a un código único.
+·        Emitir tiket de compra
+·        El tiket debe mostrar la descripción detallada de su compra.
+
+Ejemplo:
+
+ 
+
+Juan Perez Martinez
+
+Descripción		Cantidad		Subtotal		
+
+Entradas adulto		8			$1440
+Sillas			5			$150
+Mesa			1			$50
+			TOTAL A PAGAR		$1640
+
+ 
