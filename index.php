@@ -1,5 +1,4 @@
 <?php
-// index.php
 $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 ?>
 <!DOCTYPE html>
@@ -11,10 +10,59 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <title>Parque Acuático</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Agregar Bootstrap y dependencias -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         /* Puedes agregar estilos adicionales aquí */
         .card-body {
             background-color: #fff;
+        }
+
+
+        .carousel-item img {
+            max-height: 400px;
+            /* Ajusta el tamaño máximo según necesites */
+            width: auto;
+            /* Mantiene la proporción */
+            object-fit: contain;
+            /* Evita recortes */
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            width: 5%;
+            /* Ajusta el ancho de las flechas */
+        }
+
+        .carousel-control-prev {
+            left: 27%;
+            /* Mueve la flecha izquierda más al centro */
+        }
+
+        .carousel-control-next {
+            right: 27%;
+            /* Mueve la flecha derecha más al centro */
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 3rem;
+            /* Ajusta el tamaño de las flechas */
+            height: 3rem;
+        }
+
+        .card-img-top {
+            width: 100%;
+            /* Asegura que ocupe todo el ancho de la tarjeta */
+            height: 200px;
+            /* Ajusta la altura deseada */
+            object-fit: cover;
+            /* Recorta la imagen sin distorsionarla */
+            border-radius: 8px;
+            /* Opcional: bordes redondeados para un mejor diseño */
         }
     </style>
 </head>
@@ -93,42 +141,122 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             <p class="text-center">El parque acuático cuenta con:</p>
 
             <!-- Carrusel de imágenes -->
-            <div id="carouselParque" class="carousel slide mb-4" data-ride="carousel">
+            <div id="carouselParque" class="carousel slide mb-4" data-bs-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li data-target="#carouselParque" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselParque" data-slide-to="1"></li>
-                    <li data-target="#carouselParque" data-slide-to="2"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="2"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="4"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="5"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="6"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="7"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="8"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="9"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="10"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="11"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="12"></li>
+                    <li data-bs-target="#carouselParque" data-bs-slide-to="13"></li>
                 </ol>
+
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="img/alberca_infantil.jpg" class="d-block w-100" alt="Alberca infantil">
+                        <img src="Resources/AlbercaInfantil.jpg" class="mx-auto d-block" alt="Alberca infantil">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Alberca infantil</h5>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="img/alberca_familiar.jpg" class="d-block w-100" alt="Alberca familiar">
+                        <img src="Resources/AlbercaFamiliar.jpg" class="mx-auto d-block" alt="Alberca familiar">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Alberca familiar</h5>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="img/alberca_olasy_toboganes.jpg" class="d-block w-100" alt="Alberca de olas y toboganes">
+                        <img src="Resources/AlbercaOlasToboganes.jpg" class="mx-auto d-block"
+                            alt="Alberca de olas y toboganes">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>Alberca de olas y toboganes</h5>
                         </div>
                     </div>
-                    <!-- Puedes agregar más carousel-item con imágenes de Lago natural, Cabañas, Camping, etc. -->
+                    <div class="carousel-item">
+                        <img src="Resources/LagoNatural.jpg" class="mx-auto d-block" alt="Lago natural">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Lago natural</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/CabañaPequeña.jpg" class="mx-auto d-block" alt="Cabañas para 4 personas">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Cabañas para 4 personas</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/CabañaGrande.jpg" class="mx-auto d-block" alt="Cabañas para 6 personas">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Cabañas para 6 personas</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/Camping.jpg" class="mx-auto d-block" alt="Áreas de camping">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Áreas de camping</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/Estacionamiento.jpg" class="mx-auto d-block" alt="Estacionamiento">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Estacionamiento</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/ServicioMedico.jpg" class="mx-auto d-block" alt="Servicio médico">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Servicio médico</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/Regaderas.jpg" class="mx-auto d-block" alt="Regaderas">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Regaderas</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/Seguridad.jpg" class="mx-auto d-block" alt="Seguridad las 24 Hrs">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Seguridad las 24 Hrs</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/Asadores.jpg" class="mx-auto d-block" alt="Asadores">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Asadores</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/AreaVerde.jpg" class="mx-auto d-block" alt="Áreas verdes">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Áreas verdes</h5>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="Resources/RentaCasas.jpg" class="mx-auto d-block" alt="Renta de casas de campaña">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Renta de casas de campaña</h5>
+                        </div>
+                    </div>
                 </div>
-                <a class="carousel-control-prev" href="#carouselParque" role="button" data-slide="prev">
+
+                <a class="carousel-control-prev" href="#carouselParque" role="button" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Anterior</span>
+                    <span class="visually-hidden">Anterior</span>
                 </a>
-                <a class="carousel-control-next" href="#carouselParque" role="button" data-slide="next">
+                <a class="carousel-control-next" href="#carouselParque" role="button" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Siguiente</span>
+                    <span class="visually-hidden">Siguiente</span>
                 </a>
             </div>
+
 
             <!-- Tarjetas con costos -->
             <h2 class="text-center">Costos</h2>
@@ -136,7 +264,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Ejemplo de tarjeta: Espacio para casa de campaña por noche -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/casa_campania.jpg" class="card-img-top" alt="Casa de campaña">
+                        <img src="Resources/Div-uno.jpg" class="card-img-top" alt="Casa de campaña">
                         <div class="card-body">
                             <p>Espacio para casa de campaña por noche: $350</p>
                         </div>
@@ -145,7 +273,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Renta de casa de campaña para 4 personas -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/casa_4.jpg" class="card-img-top" alt="Casa para 4 personas">
+                        <img src="Resources/Div-dos.jpg" class="card-img-top" alt="Casa para 4 personas">
                         <div class="card-body">
                             <p>Renta de casa de campaña para 4 personas: $150</p>
                         </div>
@@ -154,7 +282,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Renta de casa de campaña para 8 personas -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/casa_8.jpg" class="card-img-top" alt="Casa para 8 personas">
+                        <img src="Resources/Div-tres.jpg" class="card-img-top" alt="Casa para 8 personas">
                         <div class="card-body">
                             <p>Renta de casa de campaña para 8 personas: $180</p>
                         </div>
@@ -163,7 +291,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Renta de casa de campaña para 12 personas -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/casa_12.jpg" class="card-img-top" alt="Casa para 12 personas">
+                        <img src="Resources/Div-cuatro.jpg" class="card-img-top" alt="Casa para 12 personas">
                         <div class="card-body">
                             <p>Renta de casa de campaña para 12 personas: $220</p>
                         </div>
@@ -172,7 +300,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Cabaña para 4 personas -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/cabana_4.jpg" class="card-img-top" alt="Cabaña para 4 personas">
+                        <img src="Resources/Div-cinco.jpg" class="card-img-top" alt="Cabaña para 4 personas">
                         <div class="card-body">
                             <p>Cabaña para 4 personas: $2500</p>
                         </div>
@@ -181,7 +309,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Cabaña para 6 personas -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/cabana_6.jpg" class="card-img-top" alt="Cabaña para 6 personas">
+                        <img src="Resources/Div-seis.jpg" class="card-img-top" alt="Cabaña para 6 personas">
                         <div class="card-body">
                             <p>Cabaña para 6 personas: $3000</p>
                         </div>
@@ -190,7 +318,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Silla -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/silla.jpg" class="card-img-top" alt="Silla">
+                        <img src="Resources/Div-siete.jpg" class="card-img-top" alt="Silla">
                         <div class="card-body">
                             <p>Silla: $30</p>
                         </div>
@@ -199,7 +327,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Mesa -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/mesa.jpg" class="card-img-top" alt="Mesa">
+                        <img src="Resources/Div-ocho.jpg" class="card-img-top" alt="Mesa">
                         <div class="card-body">
                             <p>Mesa: $50</p>
                         </div>
@@ -208,7 +336,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Sombrilla -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="img/sombrilla.jpg" class="card-img-top" alt="Sombrilla">
+                        <img src="Resources/Div-nueve.jpg" class="card-img-top" alt="Sombrilla">
                         <div class="card-body">
                             <p>Sombrilla: $50</p>
                         </div>
@@ -217,7 +345,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Entrada Adulto -->
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <img src="img/entrada_adulto.jpg" class="card-img-top" alt="Entrada Adulto">
+                        <img src="Resources/Div-diez.jpg" class="card-img-top" alt="Entrada Adulto">
                         <div class="card-body">
                             <p>Entrada al parque - Adulto: $180</p>
                         </div>
@@ -226,7 +354,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 <!-- Tarjeta para Entrada Niño -->
                 <div class="col-md-6">
                     <div class="card mb-4">
-                        <img src="img/entrada_nino.jpg" class="card-img-top" alt="Entrada Niño">
+                        <img src="Resources/Div-once.jpg" class="card-img-top" alt="Entrada Niño">
                         <div class="card-body">
                             <p>Entrada al parque - Niño: $120</p>
                         </div>
