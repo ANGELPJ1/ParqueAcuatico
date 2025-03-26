@@ -148,7 +148,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         <?php if ($page == 'comprar'): ?>
             <!-- Sección para realizar una compra -->
             <h2>Adquirir entradas y servicios</h2>
-            <form action="procesar_compra.php" method="POST">
+            <form id="formCompras" action="procesar_compra.php" method="POST">
                 <div class="form-group">
                     <label for="codigo">Código Único:</label>
                     <input type="text" class="form-control" id="codigo" name="codigo" readonly>
@@ -385,7 +385,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             <h2 class="text-center">El parque acuático cuenta con:</h2>
             <br><br>
             <div class="row">
-                <!-- Ejemplo de tarjeta: Espacio para casa de campaña por noche -->
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <img src="Resources/Div-uno.jpg" class="card-img-top imf-fluid" alt="Casa de campaña">
@@ -491,6 +490,46 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <!-- Bootstrap JS, Popper.js y jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Gestion de alertas al comprar un servicio -->
+    <script>
+        document.getElementById("formCompras").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evita que la página se recargue
+
+            let formData = new FormData(this);
+
+            fetch("procesar_compra.php", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: "¡Compra Exitosa!",
+                            text: data.message,
+                            icon: "success",
+                            confirmButtonText: "Aceptar"
+                        }).then(() => {
+                            window.location.href = "index.php";
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error",
+                            text: data.message,
+                            icon: "error",
+                            confirmButtonText: "Intentar de nuevo"
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        });
+    </script>
+
 
     <!-- Logica para calculo de subtotal -->
     <script>
