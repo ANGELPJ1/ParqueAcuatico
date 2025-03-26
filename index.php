@@ -151,28 +151,94 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             <form action="procesar_compra.php" method="POST">
                 <div class="form-group">
                     <label for="codigo">Código Único:</label>
-                    <input type="text" class="form-control" id="codigo" name="codigo" required>
+                    <input type="text" class="form-control" id="codigo" name="codigo" readonly>
                 </div>
-                <!-- Ejemplo de campos para algunos productos -->
+                <!-- Selección de tipo de entradas (permitir seleccionar ambos) -->
                 <div class="form-group">
-                    <label for="entradasAdulto">Entradas Adulto ($180 c/u):</label>
-                    <input type="number" class="form-control" id="entradasAdulto" name="entradasAdulto" value="0" min="0">
+                    <label for="tipoEntrada">Selecciona el tipo de entrada:</label><br>
+                    <input type="checkbox" id="adulto" name="tipoEntrada[]" value="adulto" onclick="toggleFields()"> Entrada
+                    Adulto ($180)<br>
+                    <input type="checkbox" id="nino" name="tipoEntrada[]" value="nino" onclick="toggleFields()"> Entrada
+                    Niño ($120)<br>
                 </div>
-                <div class="form-group">
-                    <label for="entradasNino">Entradas Niño ($120 c/u):</label>
-                    <input type="number" class="form-control" id="entradasNino" name="entradasNino" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label for="sillas">Sillas ($30 c/u):</label>
-                    <input type="number" class="form-control" id="sillas" name="sillas" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label for="mesas">Mesas ($50 c/u):</label>
-                    <input type="number" class="form-control" id="mesas" name="mesas" value="0" min="0">
-                </div>
-                <div class="form-group">
-                    <label for="sombrillas">Sombrillas ($50 c/u):</label>
-                    <input type="number" class="form-control" id="sombrillas" name="sombrillas" value="0" min="0">
+
+                <!-- Campos que se activarán al seleccionar un tipo de entrada -->
+                <div id="servicios" style="display:none;">
+                    <!-- Campos para Entradas Adulto -->
+                    <div id="adultoFields" style="display:none;">
+                        <div class="form-group">
+                            <label for="entradasAdulto">Entradas Adulto ($180 c/u):</label>
+                            <input type="number" class="form-control" id="entradasAdulto" name="entradasAdulto" value="0"
+                                min="0" onchange="calcularSubtotal()">
+                            <input type="text" class="form-control" id="subtotalAdulto" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Campos para Entradas Niño -->
+                    <div id="ninoFields" style="display:none;">
+                        <div class="form-group">
+                            <label for="entradasNino">Entradas Niño ($120 c/u):</label>
+                            <input type="number" class="form-control" id="entradasNino" name="entradasNino" value="0"
+                                min="0" onchange="calcularSubtotal()">
+                            <input type="text" class="form-control" id="subtotalNino" readonly>
+                        </div>
+                    </div>
+
+                    <!-- Productos disponibles -->
+                    <div class="form-group">
+                        <label for="sillas">Sillas ($30 c/u):</label>
+                        <input type="number" class="form-control" id="sillas" name="sillas" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalSillas" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="mesas">Mesas ($50 c/u):</label>
+                        <input type="number" class="form-control" id="mesas" name="mesas" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalMesas" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="sombrillas">Sombrillas ($50 c/u):</label>
+                        <input type="number" class="form-control" id="sombrillas" name="sombrillas" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalSombrillas" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="casaCampanaEspacio">Espacio para casa de campaña por noche ($350):</label>
+                        <input type="number" class="form-control" id="casaCampanaEspacio" name="casaCampanaEspacio"
+                            value="0" min="0" onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalCasaCampanaEspacio" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="casaCampana4">Renta de casa de campaña para 4 personas ($150):</label>
+                        <input type="number" class="form-control" id="casaCampana4" name="casaCampana4" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalCasaCampana4" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="casaCampana8">Renta de casa de campaña para 8 personas ($180):</label>
+                        <input type="number" class="form-control" id="casaCampana8" name="casaCampana8" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalCasaCampana8" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="casaCampana12">Renta de casa de campaña para 12 personas ($220):</label>
+                        <input type="number" class="form-control" id="casaCampana12" name="casaCampana12" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalCasaCampana12" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="cabaña4">Cabaña para 4 personas ($2500):</label>
+                        <input type="number" class="form-control" id="cabaña4" name="cabaña4" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalCabaña4" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="cabaña6">Cabaña para 6 personas ($3000):</label>
+                        <input type="number" class="form-control" id="cabaña6" name="cabaña6" value="0" min="0"
+                            onchange="calcularSubtotal()">
+                        <input type="text" class="form-control" id="subtotalCabaña6" readonly>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-success">Comprar</button>
             </form>
@@ -425,6 +491,90 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <!-- Bootstrap JS, Popper.js y jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Logica para calculo de subtotal -->
+    <script>
+        // Función para generar código único aleatorio
+        function generarCodigo() {
+            var caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            var codigo = '';
+            for (var i = 0; i < 6; i++) {
+                codigo += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+            }
+            document.getElementById('codigo').value = codigo;
+        }
+
+        // Función para activar campos de cantidad de productos
+        function toggleFields() {
+            var adulto = document.getElementById('adulto').checked;
+            var nino = document.getElementById('nino').checked;
+
+            // Mostrar/ocultar campos según las opciones seleccionadas
+            if (adulto || nino) {
+                document.getElementById('servicios').style.display = 'block';
+            } else {
+                document.getElementById('servicios').style.display = 'none';
+            }
+
+            // Activar campos para Entradas Adulto
+            if (adulto) {
+                document.getElementById('adultoFields').style.display = 'block';
+            } else {
+                document.getElementById('adultoFields').style.display = 'none';
+            }
+
+            // Activar campos para Entradas Niño
+            if (nino) {
+                document.getElementById('ninoFields').style.display = 'block';
+            } else {
+                document.getElementById('ninoFields').style.display = 'none';
+            }
+        }
+
+        // Función para calcular el subtotal
+        function calcularSubtotal() {
+            var precioAdulto = 180;
+            var precioNino = 120;
+            var precioSilla = 30;
+            var precioMesa = 50;
+            var precioSombrilla = 50;
+            var precioCasaCampanaEspacio = 350;
+            var precioCasaCampana4 = 150;
+            var precioCasaCampana8 = 180;
+            var precioCasaCampana12 = 220;
+            var precioCabaña4 = 2500;
+            var precioCabaña6 = 3000;
+
+            // Calcular subtotales
+            var subtotalAdulto = document.getElementById('entradasAdulto').value * precioAdulto;
+            var subtotalNino = document.getElementById('entradasNino').value * precioNino;
+            var subtotalSillas = document.getElementById('sillas').value * precioSilla;
+            var subtotalMesas = document.getElementById('mesas').value * precioMesa;
+            var subtotalSombrillas = document.getElementById('sombrillas').value * precioSombrilla;
+            var subtotalCasaCampanaEspacio = document.getElementById('casaCampanaEspacio').value * precioCasaCampanaEspacio;
+            var subtotalCasaCampana4 = document.getElementById('casaCampana4').value * precioCasaCampana4;
+            var subtotalCasaCampana8 = document.getElementById('casaCampana8').value * precioCasaCampana8;
+            var subtotalCasaCampana12 = document.getElementById('casaCampana12').value * precioCasaCampana12;
+            var subtotalCabaña4 = document.getElementById('cabaña4').value * precioCabaña4;
+            var subtotalCabaña6 = document.getElementById('cabaña6').value * precioCabaña6;
+
+            // Asignar subtotales a los campos de texto
+            document.getElementById('subtotalAdulto').value = subtotalAdulto ? '$' + subtotalAdulto : '$0';
+            document.getElementById('subtotalNino').value = subtotalNino ? '$' + subtotalNino : '$0';
+            document.getElementById('subtotalSillas').value = subtotalSillas ? '$' + subtotalSillas : '$0';
+            document.getElementById('subtotalMesas').value = subtotalMesas ? '$' + subtotalMesas : '$0';
+            document.getElementById('subtotalSombrillas').value = subtotalSombrillas ? '$' + subtotalSombrillas : '$0';
+            document.getElementById('subtotalCasaCampanaEspacio').value = subtotalCasaCampanaEspacio ? '$' + subtotalCasaCampanaEspacio : '$0';
+            document.getElementById('subtotalCasaCampana4').value = subtotalCasaCampana4 ? '$' + subtotalCasaCampana4 : '$0';
+            document.getElementById('subtotalCasaCampana8').value = subtotalCasaCampana8 ? '$' + subtotalCasaCampana8 : '$0';
+            document.getElementById('subtotalCasaCampana12').value = subtotalCasaCampana12 ? '$' + subtotalCasaCampana12 : '$0';
+            document.getElementById('subtotalCabaña4').value = subtotalCabaña4 ? '$' + subtotalCabaña4 : '$0';
+            document.getElementById('subtotalCabaña6').value = subtotalCabaña6 ? '$' + subtotalCabaña6 : '$0';
+        }
+
+        // Generar el código único al cargar la página
+        window.onload = generarCodigo;
+    </script>
 </body>
 
 </html>
