@@ -246,7 +246,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         <?php elseif ($page == 'login'): ?>
             <!-- Sección para el login del administrador -->
             <h2>Administrador - Iniciar Sesión</h2>
-            <form action="procesar_login.php" method="POST">
+            <form id="Logueo" action="procesar_login.php" method="POST">
                 <div class="form-group">
                     <label for="usuario">Usuario:</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" required>
@@ -490,7 +490,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
     <!-- Bootstrap JS, Popper.js y jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Gestion de alertas al comprar un servicio -->
@@ -530,6 +529,41 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         });
     </script>
 
+    <!-- Gestion para inicio de sesion  -->
+    <script>
+        document.querySelector("#Logueo").addEventListener("submit", function (event) {
+            event.preventDefault(); // Evitar el envío tradicional
+
+            let formData = new FormData(this);
+
+            fetch("Views/procesar_login.php", { // Ruta correcta para el archivo PHP
+                method: "POST",
+                body: formData
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({
+                            title: "¡Bienvenido!",
+                            text: data.message,
+                            icon: "success",
+                            confirmButtonText: "Aceptar"
+                        }).then(() => {
+                            window.location.href = "/Parqueacuatico/Views/admin_dashboard.php";
+
+                        });
+                    } else {
+                        Swal.fire({
+                            title: "Error",
+                            text: data.message,
+                            icon: "error",
+                            confirmButtonText: "Intentar de nuevo"
+                        });
+                    }
+                })
+                .catch(error => console.error("Error:", error));
+        });
+    </script>
 
     <!-- Logica para calculo de subtotal -->
     <script>
