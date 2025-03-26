@@ -7,6 +7,8 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="Resources/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="Resources/logo.ico" type="image/x-icon">
     <title>Parque Acuático</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -21,11 +23,10 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             background-color: #fff;
         }
 
-
         .carousel-item img {
-            max-height: 400px;
-            /* Ajusta el tamaño máximo según necesites */
-            width: auto;
+            height: 750px;
+            /* Mantiene el mismo alto para todas las imágenes */
+            width: 100%;
             /* Mantiene la proporción */
             object-fit: contain;
             /* Evita recortes */
@@ -38,12 +39,12 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         }
 
         .carousel-control-prev {
-            left: 27%;
+            left: 8%;
             /* Mueve la flecha izquierda más al centro */
         }
 
         .carousel-control-next {
-            right: 27%;
+            right: 8%;
             /* Mueve la flecha derecha más al centro */
         }
 
@@ -52,7 +53,9 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             width: 3rem;
             /* Ajusta el tamaño de las flechas */
             height: 3rem;
+            filter: invert(100%);
         }
+
 
         .card-img-top {
             width: 100%;
@@ -64,13 +67,67 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             border-radius: 8px;
             /* Opcional: bordes redondeados para un mejor diseño */
         }
+
+        h5 {
+            display: flex;
+            justify-content: center;
+            /* Centrado horizontal */
+            align-items: center;
+            /* Centrado vertical */
+            height: 50px;
+            /* Ajusta según sea necesario */
+            color: black;
+        }
+
+        p {
+
+            display: flex;
+            justify-content: center;
+            /* Centrado horizontal */
+            align-items: center;
+            /* Centrado vertical */
+            height: 50px;
+            /* Ajusta según sea necesario */
+            color: black;
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            /* Centra verticalmente el texto y la imagen */
+        }
+
+        .brand-img {
+            width: 40px;
+            /* Tamaño de la imagen */
+            height: 40px;
+            /* Mantiene la imagen cuadrada */
+            border-radius: 50%;
+            /* Hace que la imagen sea circular */
+            margin-left: 20px;
+            margin-right: 20px;
+            /* Espacio entre el texto y la imagen */
+        }
+
+        .card-img-top {
+            width: 100%;
+            /* Hace que la imagen ocupe todo el ancho del contenedor */
+            height: 250px;
+            /* Fija el alto para todas las imágenes */
+            object-fit: cover;
+            /* Asegura que la imagen cubra el área sin distorsionarse */
+        }
     </style>
 </head>
 
 <body>
     <!-- Menú superior -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <a class="navbar-brand" href="index.php">Parque Acuático</a>
+        <a class="navbar-brand" href="index.php">
+            <img src="Resources/logo.jpg" alt="Logo" class="brand-img" width="30px">
+            Parque Acuático "Ocean Paradise"
+        </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuPrincipal"
             aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -137,8 +194,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
         <?php else: ?>
             <!-- Página principal -->
-            <h1 class="text-center">Bienvenidos al Parque Acuático</h1>
-            <p class="text-center">El parque acuático cuenta con:</p>
+            <h1 class="text-center">Bienvenidos al Parque Acuático "Ocean Paradise"</h1>
 
             <!-- Carrusel de imágenes -->
             <div id="carouselParque" class="carousel slide mb-4" data-bs-ride="carousel">
@@ -259,12 +315,14 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
 
             <!-- Tarjetas con costos -->
-            <h2 class="text-center">Costos</h2>
+            <br><br><br><br><br><br>
+            <h2 class="text-center">El parque acuático cuenta con:</h2>
+            <br><br>
             <div class="row">
                 <!-- Ejemplo de tarjeta: Espacio para casa de campaña por noche -->
                 <div class="col-md-4">
                     <div class="card mb-4">
-                        <img src="Resources/Div-uno.jpg" class="card-img-top" alt="Casa de campaña">
+                        <img src="Resources/Div-uno.jpg" class="card-img-top imf-fluid" alt="Casa de campaña">
                         <div class="card-body">
                             <p>Espacio para casa de campaña por noche: $350</p>
                         </div>
