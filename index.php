@@ -80,7 +80,6 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
         }
 
         p {
-
             display: flex;
             justify-content: center;
             /* Centrado horizontal */
@@ -263,7 +262,7 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
             <h1 class="text-center">Bienvenidos al Parque Acuático "Ocean Paradise"</h1>
 
             <!-- Carrusel de imágenes -->
-            <div id="carouselParque" class="carousel slide mb-4" data-bs-ride="carousel">
+            <div id="carouselParque" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="4000">
                 <ol class="carousel-indicators">
                     <li data-bs-target="#carouselParque" data-bs-slide-to="0" class="active"></li>
                     <li data-bs-target="#carouselParque" data-bs-slide-to="1"></li>

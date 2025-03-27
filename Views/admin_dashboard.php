@@ -13,7 +13,7 @@ $query = "
     FROM ordenes o
     JOIN clientes c ON o.id_cliente = c.id_cliente
     JOIN detalles_orden d ON o.id_orden = d.id_orden
-    ORDER BY o.fecha DESC
+    ORDER BY o.fecha ASC
 ";
 $result = $conn->query($query);
 
@@ -31,7 +31,11 @@ while ($row = $result->fetch_assoc()) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administrador</title>
+    <link rel="icon" href="../Resources/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../Resources/logo.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
     <style>
         /* Estilos adicionales para mejorar la visualización */
         .group-header {
@@ -50,6 +54,15 @@ while ($row = $result->fetch_assoc()) {
 <body>
     <div class="container mt-4">
         <h2 class="text-center">Panel de Administrador</h2>
+        <!-- Contenedor para los botones alineados a la izquierda -->
+        <div class="d-flex justify-content-start mb-3">
+            <a href="logout.php" class="btn btn-danger me-2">
+                <i class="bi bi-box-arrow-right"></i> Cerrar Sesión
+            </a>
+            <a href="exportar_pdf.php" class="btn btn-primary">
+                <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+            </a>
+        </div>
         <table class="table table-bordered">
             <thead class="table-dark">
                 <tr>
@@ -92,7 +105,6 @@ while ($row = $result->fetch_assoc()) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <a href="logout.php" class="btn btn-danger">Cerrar Sesión</a>
     </div>
 </body>
 
