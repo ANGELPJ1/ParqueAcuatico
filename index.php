@@ -513,10 +513,10 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                             title: "¡Compra Exitosa!",
                             text: data.message,
                             icon: "success",
-                            confirmButtonText: "Aceptar"
+                            confirmButtonText: "Ver Ticket"
                         }).then(() => {
                             if (data.pdf_url) {
-                                window.location.href = data.pdf_url;
+                                window.open(data.pdf_url, "_blank"); // 🔹 Abre el ticket en una nueva pestaña
                             } else {
                                 window.location.href = "index.php";
                             }
