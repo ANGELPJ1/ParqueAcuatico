@@ -122,13 +122,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pdf->Ln();
 
     // Guardar PDF en servidor
-    $pdf_file = "./Views/ticket_$id_orden.pdf";
+    //$pdf_file = "./Views/ticket_$id_orden.pdf";
+    $pdf_file = __DIR__ . "/Views/ticket_$id_orden.pdf";
     $pdf->Output($pdf_file, "F");
 
     // Enviar respuesta JSON
     $response["success"] = true;
     $response["message"] = "¡Compra exitosa! Código: $codigo";
     //$response["pdf_url"] = $pdf_file; // Enlace al ticket
+    $response["pdf_url"] = "http://localhost/ParqueAcuatico/Views/ticket_$id_orden.pdf";
 
     if (json_last_error() !== JSON_ERROR_NONE) {
         echo json_encode(["success" => false, "message" => "Error al generar JSON."]);
