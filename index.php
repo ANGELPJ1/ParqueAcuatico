@@ -502,7 +502,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                 method: "POST",
                 body: formData
             })
-                .then(response => response.json())
+                .then(response => response.text()) // <-- Muestra el texto crudo
+                .then(text => {
+                    console.log("Respuesta del servidor:", text); // <-- Verifica que sea JSON válido
+                    return JSON.parse(text);
+                })
                 .then(data => {
                     if (data.success) {
                         Swal.fire({
@@ -511,7 +515,11 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                             icon: "success",
                             confirmButtonText: "Aceptar"
                         }).then(() => {
-                            window.location.href = "index.php";
+                            if (data.pdf_url) {
+                                window.location.href = data.pdf_url;
+                            } else {
+                                window.location.href = "index.php";
+                            }
                         });
                     } else {
                         Swal.fire({
@@ -523,7 +531,13 @@ $page = isset($_GET['page']) ? $_GET['page'] : 'home';
                     }
                 })
                 .catch(error => {
-                    console.error("Error:", error);
+                    console.error("Error en la solicitud:", error);
+                    Swal.fire({
+                        title: "Error",
+                        text: "Hubo un problema con la compra. Inténtalo de nuevo.",
+                        icon: "error",
+                        confirmButtonText: "Intentar de nuevo"
+                    });
                 });
         });
     </script>
